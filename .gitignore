@@ -1,0 +1,7 @@
+/dist
+/build
+/public/build
+/node_modules/
+/pnpm-lock.yaml
+/.vitepress/cache/
+/.idea/
