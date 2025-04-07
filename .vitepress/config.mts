@@ -15,9 +15,26 @@ export default defineConfig({
         server: {
             port: 5177,
         },
+        build: {
+            rollupOptions: {
+                external: ['ant-design-vue'], // 避免重复打包
+                output: {
+                    format: 'esm', // 强制输出 ESM 格式
+                },
+            },
+        },
         optimizeDeps: {
-            include: ['ant-design-vue', '@ant-design/icons-vue']
+            include: [
+                'ant-design-vue',
+                '@ant-design/icons-vue',
+                '@ant-design/icons-svg'
+            ],
+            exclude: ['@vue/server-renderer']
+        },
+        ssr: {
+            noExternal: ['ant-design-vue', '@ant-design/icons-vue']
         }
+
     },
     themeConfig: {
         logo: './logo.png',

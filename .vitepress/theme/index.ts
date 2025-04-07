@@ -1,26 +1,32 @@
-import Theme from 'vitepress/theme'
-import './style/var.css'
-import Antd from 'ant-design-vue'
-import "ant-design-vue/dist/reset.css";
-import * as antIcons from '@ant-design/icons-vue'
+import DefaultTheme from 'vitepress/theme'
+import {defineAsyncComponent, h} from 'vue'
+import 'ant-design-vue/dist/reset.css' // 引入样式
 
+// 客户端专用组件加载器
+const createClientComponent = (componentName) =>
+    defineAsyncComponent({
+        loader: () => import('ant-design-vue').then(m => m[componentName]),
+        loadingComponent: () => null, // SSR 时返回空
+        delay: 200
+    })
 
 export default {
-    ...Theme,
-    themeConfig: {
-        codeTheme: 'one-dark-pro',
-        outline: {
-            level: [2, 3], // 显示h2和h3标题
-            label: '本页目录' // 自定义标题
-        }
-    },
+    ...DefaultTheme,
     enhanceApp({app}) {
-        // 注册 Ant Design Vue
-        app.use(Antd)
-
-        // 注册图标组件
-        for (const [key, component] of Object.entries(antIcons)) {
-            app.component(key, component)
+        // 注册你使用的所有组件
+        const antdComponents = {
+            'AButton': 'Button',
+            'AInput': 'Input',
+            'ASelect': 'Select',
+            'ASelectOption': 'SelectOption',
+            'ATooltip': 'Tooltip',
+            'SearchOutlined': 'SearchOutlined',
+            'QqOutlined': 'QqOutlined',
+            'WechatOutlined': 'WechatOutlined',
         }
+
+        Object.entries(antdComponents).forEach(([name, component]) => {
+            app.component(name, createClientComponent(component))
+        })
     }
 }

@@ -1,35 +1,42 @@
 <template>
   <!-- 右侧社交按钮 -->
   <div class="button-container">
-    <!-- Twitter按钮 -->
-    <a-tooltip placement="left" :title="twitterTooltip">
-      <div class="contact twitter">
-        <QqOutlined class="icon"/>
-      </div>
-      <template #title>
-        <div class="qr-tooltip">
-          <img src="/public/qrcode/qq.png" alt="QQ QR Code">
-          <p>QQ扫码加好友</p>
-        </div>
-      </template>
-    </a-tooltip>
+    <ClientOnly>
 
-    <!-- 聊天按钮 -->
-    <a-tooltip placement="left" :title="chatTooltip">
-      <div class="contact chat">
-        <WechatOutlined class="icon"/>
-      </div>
-      <template #title>
-        <div class="qr-tooltip">
-          <img src="/public/qrcode/wechat.png" alt="WeChat QR Code">
-          <p>微信扫码加好友</p>
+      <a-tooltip placement="left">
+        <div class="contact twitter">
+          <QqOutlined class="icon"/>
         </div>
-      </template>
-    </a-tooltip>
+        <template #title>
+          <div class="qr-tooltip">
+            <img src="/public/qrcode/qq.png" alt="QQ QR Code">
+            <p>QQ扫码加好友</p>
+          </div>
+        </template>
+      </a-tooltip>
+
+      <a-tooltip placement="left">
+        <div class="contact chat">
+          <WechatOutlined class="icon"/>
+        </div>
+        <template #title>
+          <div class="qr-tooltip">
+            <img :src="WeChat" alt="WeChat QR Code">
+            <p>微信扫码加好友</p>
+          </div>
+        </template>
+      </a-tooltip>
+    </ClientOnly>
   </div>
 </template>
 
 <script setup>
+import {defineAsyncComponent} from "vue";
+
+const WeChat = '/qrcode/qq.png'
+const QqOutlined = defineAsyncComponent(() => import('@ant-design/icons-vue').then(m => m.QqOutlined));
+const WechatOutlined = defineAsyncComponent(() => import('@ant-design/icons-vue').then(m => m.WechatOutlined));
+
 
 </script>
 

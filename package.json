@@ -1,8 +1,9 @@
 {
+  "type": "module",
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "dev": "NODE_OPTIONS='--experimental-vm-modules' vitepress dev",
+    "build": "NODE_OPTIONS='--experimental-vm-modules' vitepress build",
+    "docs:preview": "NODE_OPTIONS='--experimental-vm-modules' vitepress preview"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",

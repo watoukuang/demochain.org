@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.CGm5e8fs.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"docs/R00-数据结构算法/04.md","filePath":"docs/R00-数据结构算法/04.md"}'),o={name:"docs/R00-数据结构算法/04.md"};function s(c,r,n,d,_,p){return a(),t("div")}const f=e(o,[["render",s]]);export{m as __pageData,f as default};

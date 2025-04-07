@@ -1,8 +1,7 @@
 <script setup>
-import {ref} from 'vue'
-import {SearchOutlined} from '@ant-design/icons-vue'
+import {ref,defineAsyncComponent} from 'vue'
 import Contact from "./Contact.vue";
-
+const SearchOutlined = defineAsyncComponent(() => import('@ant-design/icons-vue').then(m => m.SearchOutlined))
 const items = ref([
   {
     id: 1,
@@ -96,9 +95,7 @@ const searchQuery = ref('')
 const searchEngine = ref('google')
 
 const handleSearch = () => {
-  debugger
   if (searchQuery.value.trim()) {
-    debugger
     let searchUrl = ''
     const encodedQuery = encodeURIComponent(searchQuery.value)
     switch (searchEngine.value) {
@@ -120,112 +117,114 @@ const navigateTo = (url) => window.open(url, '_blank');
 
 <template>
   <div class="nav-container">
-    <!-- 背景粒子效果 -->
-    <div class="particles-background"/>
-    <!-- 搜索区域 -->
-    <div class="search-section">
-      <div class="search-card">
-        <div class="search-wrapper">
-          <a-select
-              v-model:value="searchEngine"
-              class="engine-selector"
-              size="large"
-          >
-            <a-select-option value="google">
-              <span class="search-option">
-                <img src="https://www.google.com/favicon.ico" class="search-engine-icon" alt="Google">
-                Google
-              </span>
-            </a-select-option>
-            <a-select-option value="bing">
-              <span class="search-option">
-                <img src="https://www.bing.com/favicon.ico" class="search-engine-icon" alt="Bing">
-                Bing
-              </span>
-            </a-select-option>
-            <a-select-option value="baidu">
-              <span class="search-option">
-                <img src="https://www.baidu.com/favicon.ico" class="search-engine-icon" alt="Baidu">
-                百度
-              </span>
-            </a-select-option>
-          </a-select>
+    <ClientOnly>
+      <!-- 背景粒子效果 -->
+      <div class="particles-background"/>
+      <!-- 搜索区域 -->
+      <div class="search-section">
+        <div class="search-card">
+          <div class="search-wrapper">
+            <a-select
+                v-model:value="searchEngine"
+                class="engine-selector"
+                size="large"
+            >
+              <a-select-option value="google">
+                <span class="search-option">
+                  <img src="https://www.google.com/favicon.ico" class="search-engine-icon" alt="Google">
+                  Google
+                </span>
+              </a-select-option>
+              <a-select-option value="bing">
+                <span class="search-option">
+                  <img src="https://www.bing.com/favicon.ico" class="search-engine-icon" alt="Bing">
+                  Bing
+                </span>
+              </a-select-option>
+              <a-select-option value="baidu">
+                <span class="search-option">
+                  <img src="https://www.baidu.com/favicon.ico" class="search-engine-icon" alt="Baidu">
+                  百度
+                </span>
+              </a-select-option>
+            </a-select>
 
-          <a-input
-              v-model:value="searchQuery"
-              placeholder="输入关键词搜索技术文档、API参考等..."
-              size="large"
-              @pressEnter="handleSearch"
-              class="search-input"
-              allow-clear
-          >
-            <template #prefix>
-              <SearchOutlined class="search-input-icon"/>
-            </template>
-          </a-input>
+            <a-input
+                v-model:value="searchQuery"
+                placeholder="输入关键词搜索技术文档、API参考等..."
+                size="large"
+                @pressEnter="handleSearch"
+                class="search-input"
+                allow-clear
+            >
+              <template #prefix>
+                <SearchOutlined class="search-input-icon"/>
+              </template>
+            </a-input>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 常用工具区域 -->
-    <div class="section-container">
-      <h3 class="section-title">
-        <span class="section-icon">🚀</span>
-        <span>常用工具</span>
-      </h3>
-      <div class="button-grid">
-        <a-button
-            v-for="item in items"
-            :key="item.id"
-            class="nav-button"
-            @click="navigateTo(item.url)"
-        >
-          <div class="button-content">
-            <span class="button-text">{{ item.text }}</span>
-          </div>
-        </a-button>
+      <!-- 常用工具区域 -->
+      <div class="section-container">
+        <h3 class="section-title">
+          <span class="section-icon">🚀</span>
+          <span>常用工具</span>
+        </h3>
+        <div class="button-grid">
+          <a-button
+              v-for="item in items"
+              :key="item.id"
+              class="nav-button"
+              @click="navigateTo(item.url)"
+          >
+            <div class="button-content">
+              <span class="button-text">{{ item.text }}</span>
+            </div>
+          </a-button>
+        </div>
       </div>
-    </div>
 
-    <!-- 编程语法 -->
-    <div class="section-container">
-      <h3 class="section-title">
-        <span class="section-icon">💻</span>
-        <span>编程语法</span>
-      </h3>
-      <div class="button-grid">
-        <a-button
-            v-for="item in langs"
-            :key="item.id"
-            class="nav-button"
-            @click="navigateTo(item.url)"
-        >
-          <div class="button-content">
-            <span class="button-text">{{ item.text }}</span>
-          </div>
-        </a-button>
+      <!-- 编程语法 -->
+      <div class="section-container">
+        <h3 class="section-title">
+          <span class="section-icon">💻</span>
+          <span>编程语法</span>
+        </h3>
+        <div class="button-grid">
+          <a-button
+              v-for="item in langs"
+              :key="item.id"
+              class="nav-button"
+              @click="navigateTo(item.url)"
+          >
+            <div class="button-content">
+              <span class="button-text">{{ item.text }}</span>
+            </div>
+          </a-button>
+        </div>
       </div>
-    </div>
 
-    <!-- 前端网址区域 -->
-    <div class="section-container">
-      <h3 class="section-title">
-        <span class="section-icon">🛠️</span>
-        <span>前端资源</span>
-      </h3>
-      <div class="button-grid">
-        <a-button
-            v-for="item in frontendItems"
-            :key="item.id"
-            class="nav-button"
-            @click="navigateTo(item.url)"
-        >
-          <div class="button-content">
-            <span class="button-text">{{ item.text }}</span>
-          </div>
-        </a-button>
+      <!-- 前端网址区域 -->
+      <div class="section-container">
+        <h3 class="section-title">
+          <span class="section-icon">🛠️</span>
+          <span>前端资源</span>
+        </h3>
+        <div class="button-grid">
+          <a-button
+              v-for="item in frontendItems"
+              :key="item.id"
+              class="nav-button"
+              @click="navigateTo(item.url)"
+          >
+            <div class="button-content">
+              <span class="button-text">{{ item.text }}</span>
+            </div>
+          </a-button>
+        </div>
       </div>
-    </div>
+    </ClientOnly>
     <Contact/>
   </div>
 </template>
