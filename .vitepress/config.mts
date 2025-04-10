@@ -1,6 +1,8 @@
 import {defineConfig} from 'vitepress'
 
 export default defineConfig({
+    cleanUrls: true, 
+    appearance:'dark',  
     title: "RZCODE｜归零码",
     description: "归零码｜面试宝典｜JAVA面试宝典｜Golang中文网｜Java中文网",
     head: [
@@ -14,12 +16,16 @@ export default defineConfig({
     vite: {
         server: {
             port: 5177,
+            headers: {
+                'Content-Type': 'application/javascript'
+            }
         },
         build: {
             rollupOptions: {
-                external: ['ant-design-vue'], // 避免重复打包
                 output: {
-                    format: 'esm', // 强制输出 ESM 格式
+                    format: 'esm',
+                    chunkFileNames: 'assets/[name]-[hash].js',
+                    assetFileNames: 'assets/[name]-[hash][extname]'
                 },
             },
         },
@@ -32,13 +38,42 @@ export default defineConfig({
             exclude: ['@vue/server-renderer']
         },
         ssr: {
-            noExternal: ['ant-design-vue', '@ant-design/icons-vue']
+            noExternal: [
+                /^ant-design-vue/,
+                /^@ant-design/,
+                /^lodash-es/,
+                'dayjs',
+                'vue'
+            ]
         }
 
     },
+    markdown: {
+        image: {
+          // 开启图片懒加载
+          lazyLoading: true
+        },
+        config: (md) => {
+            md.renderer.rules.heading_close = (tokens, idx, options, env, slf) => {
+                let htmlResult = slf.renderToken(tokens, idx, options);
+                if (tokens[idx].tag === 'h1') htmlResult += `<ArticleMetadata />`; 
+                return htmlResult;
+            }
+          }
+      },
     themeConfig: {
         logo: './logo.png',
-        darkModeSwitchLabel: 'auto',
+        darkModeSwitchLabel: '深浅模式',
+        sidebarMenuLabel:'目录', 
+        returnToTopLabel:'返回顶部', 
+        docFooter: { 
+            prev: '上一页', 
+            next: '下一页', 
+        }, 
+        outline: {
+            level: [2, 3],
+            label: '本页导航'
+        },
         nav: [
             {
                 text: '首页',
@@ -84,14 +119,14 @@ export default defineConfig({
             },
             {
                 text: 'Redis笔记',
-                link: '/docs/R01-网络编程/00'
+                link: '/docs/R04-Redis笔记/0400.md'
             },
             {
                 text: '消息队列',
                 items: [
                     {
                         text: 'KFK笔记',
-                        link: '/docs/R00-数据结构算法/00'
+                        link: '/docs/R06-消息队列/0600-KFK笔记/060000.md'
                     },
                     {
                         text: 'RMQ笔记',
@@ -107,15 +142,23 @@ export default defineConfig({
                 text: '分布式',
                 items: [
                     {
-                        text: '网关',
-                        link: '/docs/R00-数据结构算法/00'
+                        text: '服务网关',
+                        link: '/docs/R00-服务网关/00'
+                    },
+                    {
+                        text: '注册中心',
+                        link: '/docs/R00-注册中心/00'
                     }
                 ]
             },
             {
-                text: '💰区块链',
-                link: '/docs/R01-网络编程/00'
+                text: '运维笔记',
+                link: '/docs/R13-运维笔记/1301-NG相关/130100.md'
             },
+            {
+                text: '编程思考',
+                link: '/docs/R09-编程思考/0901-服务限流.md'
+            }
         ],
         sidebar: {
             '/docs/R00-数据结构/': [
@@ -288,10 +331,71 @@ export default defineConfig({
                         }
                     ]
                 }
-            ]
+            ],
+            '/docs/R09-编程思考':[
+                {
+                    text: '服务限流',
+                    link: '/docs/R09-编程思考/0901-服务限流.md'
+                },
+                {
+                    text: '负载均衡',
+                    link: '/docs/R09-编程思考/0902-负载均衡.md'
+                }
+            ],
+            '/docs/R06-消息队列/0600-KFK笔记': [
+                {
+                    "text": "📚 基础知识",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060000.md"
+                },
+                {
+                    "text": "📊 消费模型",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060001.md"
+                },
+                {
+                    "text": "🔍 参数详解",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060002.md"
+                },
+                {
+                    "text": "⚠️ 消息丢失",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060003.md"
+                },
+                {
+                    "text": "🔄 消息重复",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060004.md"
+                },
+                {
+                    "text": "🔒 副本机制",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060005.md"
+                },
+                {
+                    "text": "👥 消费组",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060006.md"
+                },
+                {
+                    "text": "⏳ 消息滞后",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060007.md"
+                },
+                {
+                    "text": "✅ 确认机制",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060008.md"
+                },
+                {
+                    "text": "❓ 常见问题",
+                    "link": "/docs/R06-消息队列/0600-KFK笔记/060009.md"
+                }
+            ],
+            '/docs/R04-Redis笔记':[
+                {
+                    text: '基础结构',
+                    link: '/docs/R04-Redis笔记/0000.md'
+                },
+            ],
         },
         footer: {
             copyright: 'Copyright © 2024-present rzcode.com'
         }
-    }
+    },
+    sitemap: {
+        hostname: 'https://rzcode.com',
+    },
 })

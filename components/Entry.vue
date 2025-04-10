@@ -27,6 +27,11 @@ const items = ref([
     id: 5,
     text: 'GetEmoji',
     url: 'https://getemoji.com/'
+  },
+  {
+    id: 6,
+    text: 'PlantUML',
+    url: 'https://app.timelessq.com/office/plantuml-editor'
   }
 ])
 
