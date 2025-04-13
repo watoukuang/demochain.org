@@ -36,14 +36,26 @@ export default {
     const antdComponents = {
       'AButton': 'Button',
       'AInput': 'Input',
+      'ARow':'Row',
+      'ACol':'Col',
+      'AList':'List',
+      'ATable':'Table',
+      'AModal': 'Modal',
+      'ASteps':'Steps',
+      'AListItem':'ListItem',
+      'AListItemMeta':'ListItemMeta',
+      'AForm': 'Form',
       'ACarousel': 'Carousel',
       'ACard': 'Card',
+      'AInputNumber':'InputNumber',
       'ASelect': 'Select',
       'ASelectOption': 'SelectOption',
       'ATooltip': 'Tooltip',
       'SearchOutlined': 'SearchOutlined',
       'QqOutlined': 'QqOutlined',
-      'WechatOutlined': 'WechatOutlined'
+      'WechatOutlined': 'WechatOutlined',
+      'AFormItem':'FormItem',
+      'ATextarea':'Textarea'
     }
 
     Object.entries(antdComponents).forEach(([name, component]) => {

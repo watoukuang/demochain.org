@@ -1,122 +1,67 @@
 <script setup>
-import {ref,defineAsyncComponent} from 'vue'
-const SearchOutlined = defineAsyncComponent(() => import('@ant-design/icons-vue').then(m => m.SearchOutlined))
-const items = ref([
+import {ref} from 'vue';
+import CoinScan from './modules/coin-scan.vue';
+const navSections = ref([
   {
-    id: 1,
-    text: 'POE',
-    url: 'https://poe.com/'
+    title: '常用工具',
+    icon: '🚀',
+    key: 'tools',
+    items: [
+      { id: 1, text: 'CryptoLogos', url: 'https://cryptologos.cc/' }
+    ]
   },
   {
-    id: 2,
-    text: 'DeepSeek',
-    url: 'https://deepseek.com/'
+    title: '市场数据',
+    icon: '💻',
+    key: 'market',
+    items: [
+      { id: 1, text: '非小号', url: 'https://element-plus.org/' },
+      { id: 2, text: 'AVE', url: 'https://www.typescriptlang.org/' },
+      { id: 3, text: 'DEX Screener', url: 'https://vitejs.dev/' },
+      { id: 4, text: 'CMC', url: 'https://webpack.js.org/' },
+      { id: 5, text: '币圈日历', url: 'https://webpack.js.org/' },
+      { id: 6, text: '比特币巨鲸追踪', url: 'https://webpack.js.org/' },
+      { id: 7, text: '以太坊巨鲸追踪', url: 'https://webpack.js.org/' },
+      { id: 8, text: '链上大额交易监控', url: 'https://webpack.js.org/' }
+    ]
   },
   {
-    id: 3,
-    text: 'GitHub',
-    url: 'https://github.com/'
+    title: '去中心化钱包',
+    icon: '🛠️',
+    key: 'wallet',
+    items: [
+      { id: 1, text: 'ImToken', url: 'https://element-plus.org/' },
+      { id: 2, text: 'OKX Web3钱包', url: 'https://www.typescriptlang.org/' },
+      { id: 3, text: 'MetaMask', url: 'https://vitejs.dev/' }
+    ]
   },
   {
-    id: 4,
-    text: 'MindMap',
-    url: 'https://wanglin2.github.io/mind-map/#/'
+    title: '链上空投平台',
+    icon: '🪂',
+    key: 'airdrop',
+    items: [/* 同上 */]
   },
   {
-    id: 5,
-    text: 'GetEmoji',
-    url: 'https://getemoji.com/'
+    title: '去中心化交易所',
+    icon: '💱',
+    key: 'dex',
+    items: [/* 同上 */]
   },
   {
-    id: 6,
-    text: 'PlantUML',
-    url: 'https://app.timelessq.com/office/plantuml-editor'
+    title: '跨链交易平台',
+    icon: '🔗',
+    key: 'crosschain',
+    items: [/* 同上 */]
+  },
+  {
+    title: '撸毛工具',
+    icon: '🧪',
+    key: 'airdrop-tools',
+    items: [/* 同上 */]
   }
 ])
 
-const frontendItems = ref([
-  {
-    id: 1,
-    text: 'ElementPlus',
-    url: 'https://element-plus.org/'
-  },
-  {
-    id: 2,
-    text: 'TypeScript',
-    url: 'https://www.typescriptlang.org/'
-  },
-  {
-    id: 3,
-    text: 'Vite',
-    url: 'https://vitejs.dev/'
-  },
-  {
-    id: 4,
-    text: 'Webpack',
-    url: 'https://webpack.js.org/'
-  }
-])
 
-const langs = ref([
-  {
-    id: 1,
-    text: 'JAVA',
-    url: 'https://element-plus.org/'
-  },
-  {
-    id: 2,
-    text: 'Golang',
-    url: 'https://www.typescriptlang.org/'
-  },
-  {
-    id: 3,
-    text: 'Rust',
-    url: 'https://vitejs.dev/'
-  },
-  {
-    id: 4,
-    text: 'JavaScript',
-    url: 'https://webpack.js.org/'
-  },
-  {
-    id: 5,
-    text: 'SQL',
-    url: 'https://webpack.js.org/'
-  },
-  {
-    id: 5,
-    text: 'SHELL',
-    url: 'https://webpack.js.org/'
-  },
-  {
-    id: 6,
-    text: 'Python',
-    url: 'https://webpack.js.org/'
-  }
-])
-
-const searchQuery = ref('')
-const searchEngine = ref('google')
-
-const handleSearch = () => {
-  if (searchQuery.value.trim()) {
-    let searchUrl = ''
-    const encodedQuery = encodeURIComponent(searchQuery.value)
-    switch (searchEngine.value) {
-      case 'bing':
-        searchUrl = `https://www.bing.com/search?q=${encodedQuery}`
-        break
-      case 'baidu':
-        searchUrl = `https://www.baidu.com/s?wd=${encodedQuery}`
-        break
-      default:
-        searchUrl = `https://www.google.com/search?q=${encodedQuery}`
-    }
-    window.open(searchUrl, '_blank')
-  }
-}
-
-const navigateTo = (url) => window.open(url, '_blank');
 </script>
 
 <template>
@@ -125,109 +70,32 @@ const navigateTo = (url) => window.open(url, '_blank');
       <!-- 背景粒子效果 -->
       <div class="particles-background"/>
       <!-- 搜索区域 -->
-      <div class="search-section">
-        <div class="search-card">
-          <div class="search-wrapper">
-            <a-select
-                v-model:value="searchEngine"
-                class="engine-selector"
-                size="large"
-            >
-              <a-select-option value="google">
-                <span class="search-option">
-                  <img src="https://www.google.com/favicon.ico" class="search-engine-icon" alt="Google">
-                  Google
-                </span>
-              </a-select-option>
-              <a-select-option value="bing">
-                <span class="search-option">
-                  <img src="https://www.bing.com/favicon.ico" class="search-engine-icon" alt="Bing">
-                  Bing
-                </span>
-              </a-select-option>
-              <a-select-option value="baidu">
-                <span class="search-option">
-                  <img src="https://www.baidu.com/favicon.ico" class="search-engine-icon" alt="Baidu">
-                  百度
-                </span>
-              </a-select-option>
-            </a-select>
-
-            <a-input
-                v-model:value="searchQuery"
-                placeholder="输入关键词搜索技术文档、API参考等..."
-                size="large"
-                @pressEnter="handleSearch"
-                class="search-input"
-                allow-clear
-            >
-              <template #prefix>
-                <SearchOutlined class="search-input-icon"/>
-              </template>
-            </a-input>
-          </div>
-        </div>
-      </div>
-
+      <coin-scan/>
       <!-- 常用工具区域 -->
-      <div class="section-container">
+      <div
+        v-for="section in navSections"
+        :key="section.key"
+        class="section-container"
+      >
         <h3 class="section-title">
-          <span class="section-icon">🚀</span>
-          <span>常用工具</span>
+          <span class="section-icon">{{ section.icon }}</span>
+          <span>{{ section.title }}</span>
         </h3>
         <div class="button-grid">
           <a-button
-              v-for="item in items"
-              :key="item.id"
-              class="nav-button"
-              @click="navigateTo(item.url)"
+            v-for="item in section.items"
+            :key="item.id"
+            class="nav-button"
+            @click="navigateTo(item.url)"
           >
             <div class="button-content">
               <span class="button-text">{{ item.text }}</span>
             </div>
           </a-button>
-        </div>
       </div>
+</div>
 
-      <!-- 编程语法 -->
-      <div class="section-container">
-        <h3 class="section-title">
-          <span class="section-icon">💻</span>
-          <span>编程语法</span>
-        </h3>
-        <div class="button-grid">
-          <a-button
-              v-for="item in langs"
-              :key="item.id"
-              class="nav-button"
-              @click="navigateTo(item.url)"
-          >
-            <div class="button-content">
-              <span class="button-text">{{ item.text }}</span>
-            </div>
-          </a-button>
-        </div>
-      </div>
-
-      <!-- 前端网址区域 -->
-      <div class="section-container">
-        <h3 class="section-title">
-          <span class="section-icon">🛠️</span>
-          <span>前端资源</span>
-        </h3>
-        <div class="button-grid">
-          <a-button
-              v-for="item in frontendItems"
-              :key="item.id"
-              class="nav-button"
-              @click="navigateTo(item.url)"
-          >
-            <div class="button-content">
-              <span class="button-text">{{ item.text }}</span>
-            </div>
-          </a-button>
-        </div>
-      </div>
+       
     </ClientOnly>
   </div>
 </template>
@@ -275,80 +143,6 @@ const navigateTo = (url) => window.open(url, '_blank');
   }
 }
 
-/* 搜索区域样式 */
-.search-section {
-  margin-bottom: 3rem;
-  display: flex;
-  justify-content: center;
-}
-
-.search-card {
-  padding: 2.5rem 2rem;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 900px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
-  backdrop-filter: blur(8px);
-  text-align: center;
-}
-
-.search-wrapper {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.engine-selector {
-  width: 180px !important;
-  flex-shrink: 0;
-}
-
-.engine-selector :deep(.ant-select-selector) {
-  height: 48px !important;
-  display: flex !important;
-  align-items: center !important;
-  background-color: rgba(255, 255, 255, 0.8) !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-}
-
-.engine-selector :deep(.ant-select-selection-item) {
-  height: 40px !important;
-}
-
-.search-option {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: bold;
-  background: linear-gradient(to right, red, orange); /* 红色到橙色渐变 */
-  -webkit-background-clip: text; /* 仅应用于文本 */
-  color: transparent; /* 使文本颜色透明以显示渐变 */}
-
-.search-engine-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.search-input {
-  flex: 1;
-  min-width: 0;
-  font-size: 1.1rem;
-  height: 48px;
-}
-
-.search-input :deep(.ant-input) {
-  padding: 10px 16px 10px 40px !important;
-  height: 100% !important;
-}
-
-.search-input-icon {
-  color: var(--vp-c-text-3);
-  font-size: 16px;
-}
 
 /* 分区容器样式 */
 .section-container {
@@ -356,6 +150,7 @@ const navigateTo = (url) => window.open(url, '_blank');
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 2rem;
+  margin-top: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(0, 0, 0, 0.05);

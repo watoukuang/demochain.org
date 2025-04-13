@@ -5,3 +5,9 @@
 @import './marker.css';
 @import './vp-code.css';
 @import './vp-code-group.css';
+
+/* 文件位置：.vitepress/theme/style.css 或 override.css */
+.VPNavBarTitle .VPImage {
+  width: 50px;   /* 调大一点，比如默认好像是 24px */
+  height: auto;
+}
