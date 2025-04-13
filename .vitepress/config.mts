@@ -63,7 +63,7 @@ export default defineConfig({
                 return htmlResult;
             }
           }
-      },
+    },
     themeConfig: {
         logo: './logo.png',
         darkModeSwitchLabel: '深浅模式',
@@ -125,6 +125,11 @@ export default defineConfig({
             }
         ],    
         sidebar: {},
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/watoukuang' },
+            { icon: 'twitter', link: 'https://x.com/watoukuang' },
+            { icon: 'telegram', link: 'https://t.me/thewatoukuang' }
+        ],
         footer: {
             copyright: 'Copyright © 2024-present 168chain.com'
         }
