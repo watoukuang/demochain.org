@@ -83,16 +83,24 @@ export default defineConfig({
                 link: '/'
             },
             {
-                text: '🟠 BTC',
+                text: '🟠 BTC（比特币）',
                 link: '/docs/R00-BTC/0000.md'
             },
             {
-                text: '🔷 ETH',
+                text: '🔷 ETH（以太坊）',
                 link: '/docs/R01-ETH/0100.md'
             },
             {
-                text: '🟡 SOL',
+                text: '🟡 SOL（Solana）',
                 link: '/docs/R02-SOL/0200.md'
+            },
+            {
+                text: '🏛️ 交易所',
+                link: '/docs/R03-交易所/0000.md'
+            },
+            {
+                text: '⚖️ 链上套利',
+                link: '/docs/R04-链上套利/0400.md'
             },
             {
                 text: '🧪 演示平台',
@@ -123,8 +131,15 @@ export default defineConfig({
                     }
                 ]
             }
-        ],    
-        sidebar: {},
+        ],          
+        sidebar: {
+            '/docs/R04-链上套利':[
+                {
+                    text: '快速了解',
+                    link: '/docs/R04-链上套利/0400.md'
+                },
+            ],
+        },
         socialLinks: [
             { icon: 'github', link: 'https://github.com/watoukuang' },
             { icon: 'twitter', link: 'https://x.com/watoukuang' },

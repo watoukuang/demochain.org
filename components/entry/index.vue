@@ -3,11 +3,13 @@ import {ref} from 'vue';
 import CoinScan from './modules/coin-scan.vue';
 const navSections = ref([
   {
-    title: '常用工具',
+    title: '常用网站',
     icon: '🚀',
     key: 'tools',
     items: [
-      { id: 1, text: 'CryptoLogos', url: 'https://cryptologos.cc/' }
+      { id: 1, text: 'RoomData', url: 'https://www.rootdata.com/',remark: '查看链上项目融资' },
+      { id: 2, text: 'CryptoLogos', url: 'https://cryptologos.cc/',remark: '加密LOGO' }
+      
     ]
   },
   {
@@ -60,6 +62,7 @@ const navSections = ref([
     items: [/* 同上 */]
   }
 ])
+const navigateTo = (url) => window.open(url, '_blank');
 
 
 </script>
@@ -90,12 +93,11 @@ const navSections = ref([
           >
             <div class="button-content">
               <span class="button-text">{{ item.text }}</span>
+              <span class="button-remark">{{ item.remark }}</span>
             </div>
           </a-button>
       </div>
-</div>
-
-       
+      </div>
     </ClientOnly>
   </div>
 </template>
@@ -218,6 +220,11 @@ const navSections = ref([
   font-size: 1rem;
   color: var(--vp-c-text-1);
   font-weight: 500;
+}
+
+.button-remark{
+  font-size: 0.8rem;
+  color: var(--vp-c-text-1);
 }
 
 /* 深色模式适配 */
