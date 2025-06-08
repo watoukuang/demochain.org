@@ -1,4 +1,6 @@
 import {defineConfig} from 'vitepress'
+import { nav } from './config/nav'
+import { sidebar } from './config/sidebar'
 
 export default defineConfig({
     cleanUrls: true, 
@@ -89,48 +91,12 @@ export default defineConfig({
             level: [2, 3],
             label: '本页导航'
         },
-        nav: [
-            {
-                text: '🏠 首页',
-                link: '/'
-            },
-            {
-                text: '🔢 哈希',
-                link: 'hash'
-            },
-            {
-                text: '🧊 区块',
-                link: 'block'
-            },
-            {
-                text: '⛓️ 区块链',
-                link: 'blockchain'
-            },
-            {
-                text: '🌐 分布式',
-                link: 'distribution'
-            },
-            {
-                text: '🪙 代币',
-                link: 'token'
-            },
-            {
-                text: '💱 币基',
-                link: 'coinbase'
-            } 
-        ],          
-        sidebar: {
-            '/docs/R04-链上套利':[
-                {
-                    text: '快速了解',
-                    link: '/docs/R04-链上套利/0400.md'
-                },
-            ],
-        },
+        nav,
+        sidebar,
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/watoukuang' },
-            { icon: 'twitter', link: 'https://x.com/watoukuang' },
-            { icon: 'telegram', link: 'https://t.me/thewatoukuang' }
+            { icon: 'github', link: '' },
+            { icon: 'twitter', link: '' },
+            { icon: 'telegram', link: '' }
         ],
         footer: {
             copyright: 'Copyright © 2024-present 168chain.com'
