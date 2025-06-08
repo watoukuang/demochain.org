@@ -60,7 +60,6 @@ export default defineConfig({
                 'dayjs',
                 'vue',
                 'scroll-into-view-if-needed'
-
             ]
         }
 
