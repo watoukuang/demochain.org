@@ -2,6 +2,6 @@
 layout: page
 ---
 <script setup>
-import Entry from './components/Entry/index.vue'
+import Hash from './components/hash/index.vue'
 </script>
-<Entry />
+<Hash />

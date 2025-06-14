@@ -1,10 +1,6 @@
 // 导航栏配置
 export const nav = [
     {
-        text: '🏠 首页',
-        link: '/'
-    },
-    {
         text: '🔑 哈希',
         link: 'hash'
     },
@@ -29,11 +25,7 @@ export const nav = [
         link: 'coinbase'
     },
     {
-        text: '⚡ 迷你链',
+        text: '🚀 迷你链',
         link: 'minichain'
-    },
-    {
-        text: '🚀 精选项目',
-        link: 'items'
-    }  
+    }
 ];
