@@ -5,27 +5,27 @@ import { sidebar } from './config/sidebar'
 export default defineConfig({
     cleanUrls: true, 
     appearance:'dark',  
-    title: "168CHAIN",
-    base: '/', 
+    title: "WaTouKuang",
+    base: '/',
     description: "区块链在线演示平台",
     head: [
         ['link', { rel: 'icon', href: '/logo.png' }],
         
         // SEO 相关的 Meta 标签
-        ['meta', { name: 'description', content: '168CHAIN 提供全面的区块链学习资源，涵盖区块链聚合浏览器、链上工具、演示平台、教育网和链上套利等功能，助力开发者与用户掌握区块链技术' }],
+        ['meta', { name: 'description', content: 'WaTouKuang 提供全面的区块链学习资源，涵盖区块链聚合浏览器、链上工具、演示平台、教育网和链上套利等功能，助力开发者与用户掌握区块链技术' }],
         ['meta', { name: 'keywords', content: '区块链, 区块链聚合浏览器, 链上工具, 区块链演示平台, 区块链教育网, 链上套利, 比特币, 以太坊, Solana, 智能合约, 去中心化' }],
         
         // Open Graph（用于社交媒体分享）
-        ['meta', { property: 'og:title', content: '168CHAIN' }],
-        ['meta', { property: 'og:description', content: '168CHAIN 是一个区块链学习平台，提供区块链聚合浏览器、链上工具、演示平台、教育网及链上套利等一站式功能，帮助开发者掌握区块链技术，深入了解区块链世界。' }],
+        ['meta', { property: 'og:title', content: 'WaTouKuang' }],
+        ['meta', { property: 'og:description', content: 'WaTouKuang 是一个区块链学习平台，提供区块链聚合浏览器、链上工具、演示平台、教育网及链上套利等一站式功能，帮助开发者掌握区块链技术，深入了解区块链世界。' }],
         ['meta', { property: 'og:image', content: '/logo.png' }],
-        ['meta', { property: 'og:url', content: 'https://168chain.com' }],
+        ['meta', { property: 'og:url', content: 'https://watoukuang.com' }],
         ['meta', { property: 'og:type', content: 'website' }],
         
         // Twitter Card 配置
         ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
         ['meta', { name: 'twitter:title', content: '168CHAIN' }],
-        ['meta', { name: 'twitter:description', content: '168CHAIN 提供区块链聚合浏览器、链上工具、演示平台、教育网和链上套利等功能，助力开发者掌握和应用区块链技术。' }],
+        ['meta', { name: 'twitter:description', content: 'WaTouKuang 提供区块链聚合浏览器、链上工具、演示平台、教育网和链上套利等功能，助力开发者掌握和应用区块链技术。' }],
         ['meta', { name: 'twitter:image', content: '/logo.png' }],
     ],    
     vite: {
@@ -102,6 +102,6 @@ export default defineConfig({
         }
     },
     sitemap: {
-        hostname: 'https://168chain.com',
+        hostname: 'https://watoukuang.com',
     },
 })
