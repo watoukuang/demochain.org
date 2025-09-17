@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./framework-DHEgYJ3J.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"docs/R03-交易所/0000.md","filePath":"docs/R03-交易所/0000.md"}'),o={name:"docs/R03-交易所/0000.md"};function s(c,r,n,d,_,p){return a(),t("div")}const f=e(o,[["render",s]]);export{m as __pageData,f as default};
