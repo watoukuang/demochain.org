@@ -12,30 +12,24 @@
           <a-form :labelCol="{ span: 2 }" :wrapperCol="{ span: 22 }" class="sha256-form">
             <a-form-item label="数据">
               <a-textarea
-                :rows="6"
-                v-model:value="data"
-                @change="onChange"
-                class="textarea"
+                  :rows="12"
+                  v-model:value="data"
+                  @change="onChange"
+                  class="textarea"
               />
             </a-form-item>
             <a-form-item label="哈希">
-              <a-input disabled v-model:value="hash" class="hash-input" />
+              <a-input disabled v-model:value="hash" class="hash-input"/>
             </a-form-item>
           </a-form>
         </a-card>
-
-        <div class="sha256-ad">
-          <h1>WaTouKuang</h1>
-          <p>加入我们，一起探索数字货币未来！</p>
-          <button class="cta-button" @click="toWatouKuang">点击进入</button>
-        </div>
       </div>
     </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 import CryptoJS from 'crypto-js'
 
 const hash = ref('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
@@ -112,16 +106,6 @@ const toWatouKuang = () => {
   color: white;
 }
 
-/* 广告区域 */
-.sha256-ad {
-  background-color: #37ff18;
-  color: #172636;
-  padding: 20px;
-  text-align: center;
-  border-radius: 8px;
-  margin-top: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
 
 .sha256-ad h1 {
   font-size: 36px;
